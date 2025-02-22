@@ -43,9 +43,6 @@ async function generateDietPlan(data) {
 - Disliked Foods: ${dislikedFoods}
 - Total Days: ${days}
 
-**Diet Plan Rules:**
-1. Return exactly ${days} objects in a JSON array.
-2. Each object must be structured as:
    {
      "day": <dayNumber>,
      "meals": [
@@ -56,11 +53,7 @@ async function generateDietPlan(data) {
        { "type": "Dinner", "meal": "<meal name>", "description": "<brief info>" }
      ]
    }
-
-3. **No extra text**, disclaimers, or formatting outside the array.
-4. Meals must align with user's **favoriteFoods** and exclude **dislikedFoods**.
-5. Respond with **only** valid JSON.
-dont start with the word json
+The response should be in json format.
 
   `;
 
@@ -70,6 +63,7 @@ dont start with the word json
     const chatCompletion = await openai.chat.completions.create({
       model: "gpt-4o-2024-11-20",
       messages: [{ role: "user", content: prompt }],
+      response_format: {type: "json_object"},
     });
 
     if (chatCompletion && chatCompletion.choices && chatCompletion.choices.length > 0) {

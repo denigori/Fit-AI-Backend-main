@@ -15,6 +15,8 @@ const userPreferencesSchema = new mongoose.Schema({
   favoriteFoods: String,
   dislikedFoods: String,
   typeOfWorkout: String,
+  dietGoal: String,
+  alergies: String,
   days: String
 }, { timestamps: true });
 
